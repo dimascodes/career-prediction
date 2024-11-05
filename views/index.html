@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Career Prediction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Prediction</title>
 </head>
 <body>
-  <h1>Career Prediction</h1>
-  <form id="questionForm">
-    <!-- Form pertanyaan dinamis -->
-  </form>
-  <button onclick="submitAnswers()">Submit</button>
-  <script>
-    async function submitAnswers() {
-      // Mengirim jawaban ke server
-    }
-  </script>
+    <h1>Career Prediction Questions</h1>
+    <form action="/predict" method="POST">
+        <div id="questions-container">
+            <% questions.forEach(question => { %>
+                <h3><%= question.question_text %></h3>
+                <div>
+                    <label><input type="radio" name="answer_<%= question.id %>" value="A"> <%= question.option_a %></label><br>
+                    <label><input type="radio" name="answer_<%= question.id %>" value="B"> <%= question.option_b %></label><br>
+                    <label><input type="radio" name="answer_<%= question.id %>" value="C"> <%= question.option_c %></label><br>
+                    <label><input type="radio" name="answer_<%= question.id %>" value="D"> <%= question.option_d %></label><br>
+                </div>
+            <% }) %>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
 
